@@ -15,5 +15,14 @@ public class MainFrame extends JFrame{
 			
 			JButton savingBtn = new JButton("Saving Calculator");
 			
+			savingBtn.addActionListener(e -> {
+				new SavingCalcFrame();
+			});
+			add(savingBtn);
+			setVisible(true);
+		}
+		public static void main(String[] args) {
+			new MainFrame();
+			
 		}
 }
