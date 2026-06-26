@@ -11,5 +11,33 @@ public class User {
 	// possible monthly savings, calculated using monthly income (most recent) assuming the data we have is for one year, and monthly and biweekly expenses, here you can assume yearly expenses that are recorded have already been paid. 
 	double monthlysavings;	
 	//should add constructor(s)
-	User(String username,String password){}
+	User(String username,String password){
+		this.username = username;
+		this.pwd      = password;
+	}
+	
+	//get the most recently input wage
+	public Wage getRecentWage() {
+		if (Income.size() > 0) {
+			return Income.get(0);
+		}
+		else {
+			return new Wage("", 0.0, "");
+		}
+	}
+	
+	//get the list of expenses
+	public ArrayList<Expense> getExpenses() {
+		return Spending;
+	}
+	
+	//adds wage to incomes
+	public void addWage(Wage w) {
+		Income.add(0, w);
+	}
+	
+	//adds expense to spending
+	public void addExpense(Expense e) {
+		Spending.add(e);
+	}
 }
