@@ -13,11 +13,9 @@ public User userAtHand= null;
 	//As  a user I would like to view a detailed report of all expenses, and summary information for expenses 
 	public void PrintExpensereport(User u);
 	//As  a user I would like to view a detailed report of all income, and summary information for income
-	public void PrintIncomereport();
-	//As  a user I would like to view a detailed report of income of a certain type, and summary information for income
-	public void PrintIncomereportbyType();
+	public void PrintIncomereport(User u);
 	
-	//Removed PrintExpenseReportByType because it wasn't necessary.
+	//Removed PrintExpenseReportByType and PrintIncomeReportByType because it wasn't necessary.
 	
 	// As a user I would like to choose a report and export it as an external file (any type is fine preferences are csv or JSON)
 	public void exportReport(String reportTitle);

@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class PrintExpenseReport extends JFrame implements ActionListener{
 
@@ -45,11 +46,12 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 	JLabel      SourceLabel;
 	JComboBox   SourceComboBox;
 	JPanel      SummaryPanel;
-	JTextArea   SummaryText;
 	JButton     ExitButton;
+	JTextArea   SummaryText;
 	static User actionU;
+	private JScrollPane SummaryScrollPane;
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -67,7 +69,7 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 				}
 			}
 		});
-	}*/
+	}
 	
 	//get the summary as a text string
 	//also includes filtering, 0 is all for yearlyfrequency, "all" is all for source
@@ -93,9 +95,9 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 					if ((sourceFilter.equals("All")) || (e.get(i).source == sourceFilter)) {	
 						//add to total and expIndex
 						total    += e.get(i).amount * e.get(i).yearlyfrequency;
-						expIndex ++;
 						//add amount
 						summary += (" " + (expIndex) + ". Price: " + e.get(i).amount + ", ");
+						expIndex ++;
 						//add frequency
 						summary += "Frequency: ";
 						switch(e.get(i).yearlyfrequency) {
@@ -255,10 +257,13 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 		SummaryPanel.setBounds(10, 161, 416, 232);
 		ExpenseReportPanel.add(SummaryPanel);
 		
-		//add summary text
-		SummaryText = new JTextArea(getSummary(u, 0, "All"));
-		SummaryText.setPreferredSize(new Dimension(390, 203));
-		SummaryPanel.add(SummaryText);
+		SummaryScrollPane = new JScrollPane();
+		SummaryScrollPane.setPreferredSize(new Dimension(390, 200));
+		SummaryPanel.add(SummaryScrollPane);
+		
+		SummaryText = new JTextArea(getSummary(u, 0, (String) SourceComboBox.getSelectedItem()));
+		SummaryText.setEditable(false);
+		SummaryScrollPane.setViewportView(SummaryText);
 		 
 		//add exit button
 		ExitButton = new JButton("Exit");

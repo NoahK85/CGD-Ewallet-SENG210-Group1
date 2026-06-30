@@ -26,6 +26,11 @@ public class User {
 		}
 	}
 	
+	//get the list of wages
+	public ArrayList<Wage> getWages() {
+		return Income;
+	}
+	
 	//get the list of expenses
 	public ArrayList<Expense> getExpenses() {
 		return Spending;
