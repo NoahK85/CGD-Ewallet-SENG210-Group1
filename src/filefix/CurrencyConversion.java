@@ -1,4 +1,5 @@
-package src;
+package filefix;
+
 
 public class CurrencyConversion {
 	private double usDollarToUsDollar = 1; //EdgeCase?

@@ -1,3 +1,4 @@
+package filefix;
 
 public class IncomeReport {
 	double[] incomeAmounts = {2000, 1500, 500};

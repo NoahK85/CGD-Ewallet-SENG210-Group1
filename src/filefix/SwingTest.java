@@ -1,4 +1,5 @@
-package src;
+package filefix;
+
 import javax.swing.*;
 
 public class SwingTest {

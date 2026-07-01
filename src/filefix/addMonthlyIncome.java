@@ -1,3 +1,5 @@
+package filefix;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

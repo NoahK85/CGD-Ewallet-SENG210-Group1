@@ -1,12 +1,14 @@
-package ui;
+package uiFileFix;
 
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.*;
 
-import src.CurrencyConversion;
+//had to fix this import after file structure fix
+import filefix.CurrencyConversion;
 
 public class CurrencyConversionFrame extends JFrame {
 
