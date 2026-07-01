@@ -25,12 +25,12 @@ public class User {
 			return new Wage("", 0.0, "");
 		}
 	}
-	
+
 	//get the list of wages
 	public ArrayList<Wage> getWages() {
 		return Income;
 	}
-	
+
 	//get the list of expenses
 	public ArrayList<Expense> getExpenses() {
 		return Spending;
