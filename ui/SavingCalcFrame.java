@@ -74,6 +74,8 @@ public class SavingCalcFrame extends JFrame {
 				return;
 			}
 			
+			//maybe integrate savings from noahs features monthsCalc
+			
 			double monthsCalc = price / monthlySaving;
 			long result = (long) Math.ceil(monthsCalc);
 			

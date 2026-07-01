@@ -1,4 +1,4 @@
-
+package src;
 public class Wage {
 	String source;
 	double amount;

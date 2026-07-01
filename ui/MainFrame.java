@@ -15,9 +15,18 @@ public class MainFrame extends JFrame{
 			
 			JButton savingBtn = new JButton("Saving Calculator");
 			
+			
+			JButton currencyConversion = new JButton("Currency Convertor");
+			
 			savingBtn.addActionListener(e -> {
 				new SavingCalcFrame();
 			});
+			
+			currencyConversion.addActionListener(e -> {
+				new CurrencyConversionFrame();
+			});
+			
+			add(currencyConversion);
 			add(savingBtn);
 			setVisible(true);
 		}
