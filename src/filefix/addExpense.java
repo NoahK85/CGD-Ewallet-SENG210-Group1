@@ -254,7 +254,11 @@ public class addExpense extends JFrame implements ActionListener {
 			
 			//update user object
 			userObject.addExpense(expenseObject);
-			
+			DatabaseWriter.insertExpense(
+			        expenseObject.source,
+			        expenseObject.amount,
+			        expenseObject.yearlyfrequency
+			);
 			//update savings
 			updateMonthlySavings.updateSavings(userObject);
 			
