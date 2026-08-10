@@ -11,11 +11,10 @@ public class MainFrame extends JFrame {
 
 		// addeder here for a demo user as hardcoded
 		actionU = new User("test", "123");
-
-		actionU.addIncome(new Wage("Job A", 500, 1));
-		actionU.addIncome(new Wage("Job B", 1200, 2));
-		actionU.addIncome(new Wage("Side Work", 800, 3));
-
+		
+		//load expenses and income 
+		DatabaseWriter.loadFromDatabase(actionU);
+		
 		setTitle("E-Wallet App");
 		setSize(350, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +48,9 @@ public class MainFrame extends JFrame {
 
 		JButton incomeReportButton = new JButton("Income Report");
 
-		JButton exportIncomeButton = new JButton("Export Income Report");
-
 		JButton expenseReportButton = new JButton("Expense Report");
+
+		JButton importReportButton  = new JButton("Import Report");
 
 		JButton addMonthlyIncomeButton = new JButton("Add Monthly Income");
 
@@ -61,8 +60,8 @@ public class MainFrame extends JFrame {
 				savingBtn,
 				currencyConversion,
 				incomeReportButton,
-				exportIncomeButton,
 				expenseReportButton,
+				importReportButton,
 				addMonthlyIncomeButton,
 				addExpenseButton
 		};
@@ -89,9 +88,9 @@ public class MainFrame extends JFrame {
 			});
 		});
 
-		exportIncomeButton.addActionListener(e -> {
+		importReportButton.addActionListener(e -> {
 
-			new PrintIncomeReport(actionU);
+			new loadFile(actionU);
 		});
 
 		expenseReportButton.addActionListener(e -> {
@@ -115,8 +114,8 @@ public class MainFrame extends JFrame {
 		buttonPanel.add(addExpenseButton);
 		buttonPanel.add(addMonthlyIncomeButton);
 		buttonPanel.add(expenseReportButton);
-		buttonPanel.add(exportIncomeButton);
 		buttonPanel.add(incomeReportButton);
+		buttonPanel.add(importReportButton);
 		buttonPanel.add(currencyConversion);
 		buttonPanel.add(savingBtn);
 		add(buttonPanel, BorderLayout.CENTER);

@@ -33,7 +33,9 @@ public User userAtHand= null;
 	public static void updateMonthlySavings(User u) {
 			double totalMonthlyIncome = 0;
 			double totalMonthlyExpenses = 0;
-			totalMonthlyIncome = u.getIncome().get(u.getIncome().size()-1).amount;
+			if (u.getIncome().size() > 0) {
+				totalMonthlyIncome = u.getIncome().get(u.getIncome().size()-1).amount;
+			}
 
 			for (Expense e : u.getSpending())
 			{

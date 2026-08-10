@@ -1,8 +1,9 @@
-package filefix;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DatabaseWriter {
 
@@ -19,13 +20,11 @@ public class DatabaseWriter {
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-
+        	
             statement.setString(1, source);
             statement.setDouble(2, amount);
             statement.setInt(3, yearlyFrequency);
             statement.executeUpdate();
-
-            System.out.println("Expense inserted successfully!");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,15 +50,53 @@ public class DatabaseWriter {
             statement.setInt(3, month);
             statement.executeUpdate();
 
-            System.out.println("Wage inserted successfully!");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    public static void loadFromDatabase(User u) { 
+    	String strExpense = "SELECT * FROM EXPENSE";
+    	String strWage    = "SELECT * FROM WAGE";
+    	
+		//import expenses
+    	try (Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(strExpense)) {
+               Object expenseList = statement.executeQuery();
+               System.out.println(expenseList);
+               
+               ResultSet results = statement.executeQuery();
+   				while(results.next())
+   				{
+   					String source      = results.getString(1);
+   					double amount      = results.getDouble(2);
+   					int    yearlyfreq  = results.getInt(3);
+   					u.importSpending(new Expense(source, amount, yearlyfreq));
+   				}
+   				results.close();
 
-    public static void main(String[] args) {
-        insertExpense("Food", 25.50, 52);
-        insertWage("Babysitting", 200.00, 8);
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+    	
+    	//import wages
+    	try (Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(strWage)) {
+               Object expenseList = statement.executeQuery();
+               System.out.println(expenseList);
+               
+               ResultSet results = statement.executeQuery();
+   				while(results.next())
+   				{
+   					String source      = results.getString(1);
+   					double amount      = results.getDouble(2);
+   					int    month       = results.getInt(3);
+   					u.importIncome(new Wage(source, amount, month));
+   				}
+   				results.close();
+
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
     }
 }
