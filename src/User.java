@@ -21,10 +21,30 @@ public class User {
 	//adds expense to end of spending
 	public void addSpending(Expense e) {
 		Spending.add(e);
+		DatabaseWriter.insertExpense(
+		        e.source,
+		        e.amount,
+		        e.yearlyfrequency
+		);
+	}
+	
+	//imports expense to end of spending
+	public void importSpending(Expense e) {
+		Spending.add(e);
 	}
 	
 	//adds wage to end of income
 	public void addIncome(Wage w) {
+		Income.add(w);
+		DatabaseWriter.insertWage(
+		        w.source,
+		        w.amount,
+		        w.Month
+		);
+	}
+	
+	//adds wage to end of income
+	public void importIncome(Wage w) {
 		Income.add(w);
 	}
 	

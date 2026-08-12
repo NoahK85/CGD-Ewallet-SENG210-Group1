@@ -180,7 +180,7 @@ public class AddMonthlyIncome extends JFrame implements ActionListener{
 		
 	}
 	
-	//add expense
+	//add income
 	public void actionPerformed(ActionEvent e) {
 		String source    = sourceTextfield.getText();
 		double amount    = (double) amountSpinner.getValue();
